@@ -1,0 +1,408 @@
+@charset "UTF-8";
+
+* {
+	font-family: 'NanumSquare';
+}
+
+header {
+	text-align: center;
+}
+
+#logo_area h1 {
+	font-size: 45px;
+	margin-bottom: 15px;
+}
+
+#logo_area h3 {
+	font-size: 20px;
+	margin-top: 15px;
+	margin-left: 90px;
+}
+
+#logo_area .logo {
+	width: 30%;
+	height: 100px;
+	margin: 0 auto;
+}
+
+#logo_area .logo:hover {
+	cursor: pointer;
+}
+/* footer 영역 */
+footer {
+	background-color: black;
+	height: 300px;
+	color: white;
+	text-align: center;
+	display:inline-block;
+	bottom:0;
+	width:100%;
+	margin-top:200px;
+}
+
+
+/*햄버거 메뉴 버튼  */
+/* menu-button 클릭시 하위의 4개의 span 중 2개가 돌아서 X자를 만든다  */
+
+.menu-button {
+	position: absolute;
+	transition: .3s ease-in-out;
+	width: 45px;
+	height: 34px;
+	display: block;
+	top: 5.5rem;
+	left: 5.5rem;
+	z-index: 100;
+}
+
+.menu-button span {
+	position: absolute;
+	height: 6px;
+	border-radius: 4px;
+	width: 100%;
+	background-color: #3D4146;
+	margin-left: -25px;
+	top: 0;
+	transition: transform .2s ease-in-out, opacity .2s ease-in-out;
+}
+
+.menu-button span:nth-child(1) {
+	top: 0px;
+}
+
+.menu-button span:nth-child(2), .menu-button span:nth-child(3) {
+	top: 13px;
+}
+
+.menu-button span:nth-child(4) {
+	top: 26px;
+}
+
+.menu-button.active span {
+	background-color: #FFF;
+}
+
+.menu-button.active span:nth-child(1), .menu-button.active span:nth-child(4)
+	{
+	opacity: 0;
+}
+
+.menu-button.active span:nth-child(2) {
+	transform: rotate(45deg);
+}
+
+.menu-button.active span:nth-child(3) {
+	transform: rotate(-45deg);
+}
+
+.overlay {
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #7ba9c3;
+	height: 0;
+	overflow: hidden;
+	opacity: 0;
+	transition: 0.3s;
+}
+
+.menu ul li {
+	list-style: none;
+	margin: 1rem 0;
+	opacity: 0;
+}
+
+@keyframes fadeInLeft {from { opacity:0;
+	transform: translateX(-25%);
+}
+
+to {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+}
+.menu ul li a {
+	color: white;
+	text-decoration: none;
+	font-weight: bold;
+	transition: 0.2s ease;
+	font-size: 25px;
+}
+
+.menu ul li a:hover {
+	color: black;
+}
+
+.overlay.visible {
+	width: 100%;
+	height: 100%;
+	opacity: 0.85;
+	z-index: 1;
+}
+
+.visible .menu ul li {
+	animation: fadeInLeft 0.3s ease forwards;
+}
+
+.menu ul li:nth-child(1) {
+	animation-delay: 0.3s;
+}
+
+.menu ul li:nth-child(2) {
+	animation-delay: 0.34s;
+}
+
+.menu ul li:nth-child(3) {
+	animation-delay: 0.38s;
+}
+
+.menu ul li:nth-child(4) {
+	animation-delay: 0.42s;
+}
+
+.menu ul li:nth-child(5) {
+	animation-delay: 0.46s;
+}
+
+/* 메인메뉴 이미지 슬라이드 */
+.slide ul, li {
+	list-style: none;
+}
+
+.slide {
+	height: 350px;
+	overflow: hidden;
+	width: 90%;
+	margin: 0 auto;
+}
+
+.slide ul {
+	margin-left: 0;
+	padding-left: 0;
+	width: calc(100% * 4);
+	display: flex;
+	animation: slide 16s infinite;
+} /* slide를 8초동안 진행하며 무한반복 함 */
+.slide li {
+	width: calc(100%/ 4);
+	height: 350px;
+}
+
+@keyframes slide { 0% {
+	margin-left: 0;
+} /* 0 ~ 10  : 정지 */
+10%{
+margin-left
+:
+0;
+} /* 10 ~ 25 : 변이 */
+25%{
+margin-left
+:
+-100%;
+} /* 25 ~ 35 : 정지 */
+35%{
+margin-left
+:
+-100%;
+} /* 35 ~ 50 : 변이 */
+50%{
+margin-left
+:
+-200%;
+}
+60%{
+margin-left
+:
+-200%;
+}
+75%{
+margin-left
+:
+-300%;
+}
+85%{
+margin-left
+:
+-300%;
+}
+100%{
+margin-left
+:
+0;
+}
+}
+.slide li:nth-child(1) {
+	background: #ffa;
+}
+
+.slide li:nth-child(2) {
+	background: #faa;
+}
+
+.slide li:nth-child(3) {
+	background: #afa;
+}
+
+.slide li:nth-child(4) {
+	background: #aaf;
+}
+
+/* 회원가입, 로그인 부분 */
+#account {
+	position: absolute;
+	top: 5.5rem;
+	right: 5.3rem;
+	text-align: right;
+}
+
+#account ul {
+	list-style: none;
+}
+
+#account ul li {
+	display: inline-block;
+}
+
+#account ul li input {
+	border: none;
+	background: none;
+	font-size: 18px;
+}
+
+#account ul li input:hover {
+	cursor: pointer;
+}
+
+#account ul li input:active {
+	border: none;
+	background: none;
+}
+
+/* main 페이지 슬라이드 하단 상품리스트  */
+.item-list {
+	margin: 0 auto;
+}
+
+.item-list ul {
+	list-style: none;
+	padding-left: 0;
+	text-align: center;
+}
+
+.item-list ul li {
+	margin: 20px;
+	display: inline-block;
+	width: 20%;
+	height: 350px;
+	border: 1px solid black;
+}
+
+.item-list li:nth-child(1) {
+	background-size: cover;
+}
+
+.item-list li:nth-child(2) {
+	background-size: contain;
+}
+
+.item-list li:nth-child(3) {
+	background-size: contain;
+}
+
+.item-list li:nth-child(4) {
+	background-size: contain;
+}
+
+/*signup  */
+#signupForm {
+	margin: 0 auto;
+}
+
+#signupForm ul {
+	list-style-type: none;
+}
+
+#signupForm {
+	width: 50%;
+	padding-top: 30px;
+	padding-bottom: 50px;
+}
+
+#signupForm input {
+	width: 300px;
+	height: 20px;
+	padding: 0;
+}
+
+#signupForm .idck {
+	width: 80px;
+	height: 24px;
+	padding: 0;
+	margin-left: 10px;
+}
+
+#signupForm li {
+	margin-top: 10px;
+}
+
+#signupForm .addr li {
+	margin-top: 10px;
+}
+
+#signupForm #extraAddress {
+	width: 100px;
+	margin-left: 10px;
+}
+
+#signupForm .signup-submit {
+	margin-top: 80px;
+	margin-left: 200px;
+}
+
+/* admin  */
+
+#admin-main {
+	width: 80%;
+	margin: 0 auto;
+}
+
+#admin-main h1 {
+	text-align: center;
+	margin-top:40px;
+	margon-bottom:40px;
+}
+
+#admin-main #admin-left {
+	float:left;
+	width: 15%;
+	background-color: lightblue;
+	margin-right:20px;
+}
+
+#admin-left ul {
+	list-style-type: none;
+	text-align: center;
+	margin-left: -40px;
+}
+
+#admin-left ul li {
+	display: block;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+#admin-left ul li:hover {
+	cursor: pointer;
+}
+
+#admin-main #admin-right {
+	float:left;
+	width: 80%;
+}

@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="Interface.Attendance">
+
+	<select id="personalLogin" resultType="houschool.VO.memberVO">
+		select * from
+		signup_personal where
+		userId=#{param1} and userPw=#{param2}
+	</select>
+	<select id="schoolLogin" resultType="houschool.VO.schoolVO">
+		select * from signup_school
+		where
+		userId=#{param1} and userPw=#{param2}
+	</select>
+
+
+	<insert id="schoolSignup">
+		insert into signup_school
+		values(#{schoolName},#{schoolAdres},#{userId},#{userPw},#{userPhone},to_date(#{userDate},'yyyy-MM-dd'),#{userEmail},#{type},#{userName})
+	</insert>
+	<insert id="personalSignup">
+		insert into signup_personal
+		values(#{schoolName},#{schoolAdres},#{grade},#{batch},#{classnum},#{type},#{major},#{userId},#{userPw},#{userName},#{userAdres},#{userPhone},to_date(#{userDate},'yyyy-MM-dd'),#{userEmail})
+	</insert>
+	<select id="schoolIdCheck" resultType="_int">
+		select count(*) from
+		signup_school
+		where userId=#{param1}
+	</select>
+	<select id="personalIdCheck" resultType="_int">
+		select count(*) from
+		signup_personal
+		where userId=#{param1}
+	</select>
+
+	<!--시간표 입력 -->
+	<insert id="insert_mon_tt">
+		insert into tt_mon values(tt_mon_seq.nextval,
+		#{schoolName},#{grade},#{batch}, #{semester},
+		#{subject_mon_1st},#{subject_mon_1st_teacher},
+		#{subject_mon_2nd},#{subject_mon_2nd_teacher},
+		#{subject_mon_3rd},#{subject_mon_3rd_teacher},
+		#{subject_mon_4th},#{subject_mon_4th_teacher},
+		#{subject_mon_5th},#{subject_mon_5th_teacher},
+		#{subject_mon_6th},#{subject_mon_6th_teacher},
+		#{subject_mon_7th},#{subject_mon_7th_teacher},
+		#{subject_mon_8th},#{subject_mon_8th_teacher},
+		#{subject_mon_9th},#{subject_mon_9th_teacher},
+		#{subject_mon_10th},#{subject_mon_10th_teacher} )
+	</insert>
+	<insert id="insert_tue_tt">
+		insert into tt_tue values(tt_tue_seq.nextval,
+		#{schoolName},#{grade},#{batch}, #{semester},
+		#{subject_tue_1st},#{subject_tue_1st_teacher},
+		#{subject_tue_2nd},#{subject_tue_2nd_teacher},
+		#{subject_tue_3rd},#{subject_tue_3rd_teacher},
+		#{subject_tue_4th},#{subject_tue_4th_teacher},
+		#{subject_tue_5th},#{subject_tue_5th_teacher},
+		#{subject_tue_6th},#{subject_tue_6th_teacher},
+		#{subject_tue_7th},#{subject_tue_7th_teacher},
+		#{subject_tue_8th},#{subject_tue_8th_teacher},
+		#{subject_tue_9th},#{subject_tue_9th_teacher},
+		#{subject_tue_10th},#{subject_tue_10th_teacher} )
+	</insert>
+	<insert id="insert_wed_tt">
+		insert into tt_wed values(tt_wed_seq.nextval,
+		#{schoolName},#{grade},#{batch}, #{semester},
+		#{subject_wed_1st},#{subject_wed_1st_teacher},
+		#{subject_wed_2nd},#{subject_wed_2nd_teacher},
+		#{subject_wed_3rd},#{subject_wed_3rd_teacher},
+		#{subject_wed_4th},#{subject_wed_4th_teacher},
+		#{subject_wed_5th},#{subject_wed_5th_teacher},
+		#{subject_wed_6th},#{subject_wed_6th_teacher},
+		#{subject_wed_7th},#{subject_wed_7th_teacher},
+		#{subject_wed_8th},#{subject_wed_8th_teacher},
+		#{subject_wed_9th},#{subject_wed_9th_teacher},
+		#{subject_wed_10th},#{subject_wed_10th_teacher} )
+	</insert>
+	<insert id="insert_tur_tt">
+		insert into tt_tur values(tt_tur_seq.nextval,
+		#{schoolName},#{grade},#{batch}, #{semester},
+		#{subject_tur_1st},#{subject_tur_1st_teacher},
+		#{subject_tur_2nd},#{subject_tur_2nd_teacher},
+		#{subject_tur_3rd},#{subject_tur_3rd_teacher},
+		#{subject_tur_4th},#{subject_tur_4th_teacher},
+		#{subject_tur_5th},#{subject_tur_5th_teacher},
+		#{subject_tur_6th},#{subject_tur_6th_teacher},
+		#{subject_tur_7th},#{subject_tur_7th_teacher},
+		#{subject_tur_8th},#{subject_tur_8th_teacher},
+		#{subject_tur_9th},#{subject_tur_9th_teacher},
+		#{subject_tur_10th},#{subject_tur_10th_teacher} )
+	</insert>
+	<insert id="insert_fri_tt">
+		insert into tt_fri values(tt_fri_seq.nextval,
+		#{schoolName},#{grade},#{batch}, #{semester},
+		#{subject_fri_1st},#{subject_fri_1st_teacher},
+		#{subject_fri_2nd},#{subject_fri_2nd_teacher},
+		#{subject_fri_3rd},#{subject_fri_3rd_teacher},
+		#{subject_fri_4th},#{subject_fri_4th_teacher},
+		#{subject_fri_5th},#{subject_fri_5th_teacher},
+		#{subject_fri_6th},#{subject_fri_6th_teacher},
+		#{subject_fri_7th},#{subject_fri_7th_teacher},
+		#{subject_fri_8th},#{subject_fri_8th_teacher},
+		#{subject_fri_9th},#{subject_fri_9th_teacher},
+		#{subject_fri_10th},#{subject_fri_10th_teacher} )
+	</insert>
+
+	<!--시간표 가져오기 -->
+	<select id="get_tt_mon"
+		resultType="timetable.VO.timetable_mon_VO">
+		select * from tt_mon where schoolName=#{param1} and grade =
+		#{param2} and batch = #{param3} and semester = #{param4}
+	</select>
+	<select id="get_tt_tue"
+		resultType="timetable.VO.timetable_tue_VO">
+		select * from tt_tue where schoolName=#{param1} and grade =
+		#{param2} and batch = #{param3} and semester = #{param4}
+	</select>
+	<select id="get_tt_wed"
+		resultType="timetable.VO.timetable_wed_VO">
+		select * from tt_wed where schoolName=#{param1} and grade =
+		#{param2} and batch = #{param3} and semester = #{param4}
+	</select>
+	<select id="get_tt_tur"
+		resultType="timetable.VO.timetable_tur_VO">
+		select * from tt_tur where schoolName=#{param1} and grade =
+		#{param2} and batch = #{param3} and semester = #{param4}
+	</select>
+	<select id="get_tt_fri"
+		resultType="timetable.VO.timetable_fri_VO">
+		select * from tt_fri where schoolName=#{param1} and grade =
+		#{param2} and batch = #{param3} and semester = #{param4}
+	</select>
+
+	<!--게시판 -->
+	<insert id="board_write">
+		insert into schoolBoard
+		values(board_num_seq.nextval,#{board_category}, #{board_title},
+		#{board_author}, #{board_content}, to_char(sysdate,'YYYY-MM-DD
+		HH24:MI'),#{board_orgFileName},#{board_uuidFileName})
+	</insert>
+
+	<select id="selectBoard" resultType="houschool.VO.boardVO">
+		<![CDATA[
+		select * 
+		from (
+		select rownum as m,
+		board_num,board_category,board_title,board_content, board_author, board_date,board_orgFileName,board_uuidFileName from (
+		select
+		board_num,board_category,board_title,board_content, board_author, board_date,board_orgFileName,board_uuidFileName
+		from 
+		schoolBoard
+		order by
+		board_num desc)
+		sub where rownum <= #{param1}*#{param2} 
+		order by board_num desc)
+		where m>=(#{param1}-1)*#{param2}+1 ]]>
+	</select>
+	<select id="dataCount" resultType="_int">
+		select count(board_num) as
+		dCount
+		from schoolBoard
+	</select>
+
+	<select id="selectOneBoardByNum"
+		resultType="houschool.VO.boardVO">
+		select * from schoolBoard where board_num = #{param1}
+	</select>
+
+	<select id="getTeacherList" resultType="houschool.VO.memberVO">
+		select * from
+		signup_personal where schoolName=#{param1} and type='teacher'
+	</select>
+	<select id="getStudentList" resultType="houschool.VO.memberVO">
+		select * from
+		signup_personal where schoolName=#{param1} and type='student'
+	</select>
+	<!-- mediaclass -->
+	<insert id="create">
+		insert into video_table(mediano, title,
+		poster,
+		filename, filesize,schoolName, schoolAdres, userId, classType, rdate )
+		values
+		(video_seq.nextval,
+		#{title},
+		#{poster}, #{filename},
+		#{filesize},#{schoolName}, #{schoolAdres},#{userId},
+		#{classType},sysdate)
+	</insert>
+
+	<select id="list" resultType="houschool.VO.mediaVO">
+		SELECT * FROM video_table
+		ORDER BY mediano DESC
+		<!-- SELECT * FROM video_table WHERE mview='Y' ORDER BY mediano DESC -->
+	</select>
+
+	<select id="read" resultType="houschool.VO.mediaVO">
+		SELECT * FROM video_table
+		WHERE
+		mediano=#{param1}
+	</select>
+
+	<update id="update">
+		UPDATE video_table SET title=#{title},
+		poster=#{poster},
+		filename=#{filename}, filesize=#{filesize} WHERE
+		mediano = #{mediano}
+	</update>
+	<delete id="delete">
+		delete from video_table where mediano=#{mediano}
+	</delete>
+
+	<select id="select4_schoolClass"
+		resultType="houschool.VO.mediaVO">
+	<![CDATA[
+	select * from (select * from video_table where classType='학교수업' order by rownum desc) where rownum < 5 order by rownum desc
+	]]>
+	</select>
+
+	<select id="select4_publicClass"
+		resultType="houschool.VO.mediaVO">
+	<![CDATA[
+	select * from (select * from video_table where classType='일반수업' order by rownum desc) where rownum < 5 order by rownum desc
+	]]>
+	</select>
+	
+	<select id="loginuser_schoolClass_" resultType="houschool.VO.mediaVO">
+	<![CDATA[
+	select * from (select * from video_table where classType='학교수업' and schoolName = #{param1} and schoolAdres = #{param2} order by rownum desc) where rownum < 5 order by rownum desc
+	]]>
+	</select>
+
+	<insert id="createSlide">
+		insert into slide_table
+		values(slide_seq.nextval,#{param1}, #{param2}, #{param3}, #{param4})
+	</insert>
+
+	<update id="updateSlide">
+		update slide_table set slideImg=#{slideImg} where
+		schoolName=#{schoolName} and schoolAdres=#{schoolAdres} and
+		slideno=#{slideno}
+	</update>
+
+	<select id="readSlide_1" resultType="houschool.VO.slideVO">
+	<![CDATA[
+		select * from slide_table where schoolName=#{param1} and schoolAdres=#{param2} and slideno='1'
+		]]>
+	</select>
+	<select id="readSlide_2" resultType="houschool.VO.slideVO">
+	<![CDATA[
+		select * from slide_table where schoolName=#{param1} and schoolAdres=#{param2} and slideno='2'
+		]]>
+	</select>
+	<select id="readSlide_3" resultType="houschool.VO.slideVO">
+	<![CDATA[
+		select * from slide_table where schoolName=#{param1} and schoolAdres=#{param2} and slideno='3'
+		]]>
+	</select>
+	<select id="readSlide_4" resultType="houschool.VO.slideVO">
+	<![CDATA[
+		select * from slide_table where schoolName=#{param1} and schoolAdres=#{param2} and slideno='4'
+		]]>
+	</select>
+</mapper>
